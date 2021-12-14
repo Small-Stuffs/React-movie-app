@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
 import MovieResults from './MovieResults';
+import Loader from './Loader';
 
 const StyledMain = styled.main`
   display: flex;
@@ -10,11 +11,14 @@ const StyledMain = styled.main`
 `;
 
 const MovieMain = (props) => {
-  console.log(props.movieResults);
   return (
     <StyledMain>
       <SearchForm onSearchTermChange={props.onSearchTermChange} />
-      <MovieResults movieResult={props.movieResults} />
+      {props.movieResult.length > 0 ? (
+        <MovieResults movieResult={props.movieResult} />
+      ) : (
+        <Loader />
+      )}
     </StyledMain>
   );
 };

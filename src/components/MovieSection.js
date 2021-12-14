@@ -13,7 +13,7 @@ const MovieSection = (props) => {
     <StyledMovieSection>
       <MovieHeader />
       <MovieMain
-        movieResults={props.movieResults}
+        movieResult={props.movieResult}
         onSearchTermChange={props.onSearchTermChange}
       />
     </StyledMovieSection>

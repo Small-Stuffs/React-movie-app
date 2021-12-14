@@ -59,14 +59,14 @@ class Movie extends PureComponent {
       .catch(function (error) {
         // handle error
         console.log(error);
-       });
+      });
   }
 
   render() {
     return (
       <Fragment>
         <MovieSection
-          movieResults={this.state.movies}
+          movieResult={this.state.movies}
           onSearchTermChange={this.searchMovies}
         />
         <GlobalStyle />
