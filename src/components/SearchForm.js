@@ -21,9 +21,21 @@ class SearchForm extends Component {
     super(props);
 
     this.state = {
-      inputText: 'This is Text',
+      inputText: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     inputText: 'this is test',
+  //   });
+  // }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.onSearchTermChange(this.state.inputText);
   }
   handleChange(e) {
     this.setState({
@@ -32,7 +44,7 @@ class SearchForm extends Component {
   }
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <LayoutContainer>
           <StyledSearchWrapper>
             <label for="search-movie">
@@ -43,7 +55,7 @@ class SearchForm extends Component {
                 id="search-movie"
                 placeholder="Search movies"
               />
-              <Input type="text" value={this.state.inputText} />
+              {/* <Input type="text" value={this.state.inputText} /> */}
               <Button appearance="search">
                 <StyledSvg
                   className="c-search__btn-svg"

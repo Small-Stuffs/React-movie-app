@@ -8,11 +8,14 @@ const StyledMovieSection = styled.div`
   height: 100%;
   min-height: 100vh;
 `;
-const MovieSection = () => {
+const MovieSection = (props) => {
   return (
     <StyledMovieSection>
       <MovieHeader />
-      <MovieMain />
+      <MovieMain
+        movieResults={props.movieResults}
+        onSearchTermChange={props.onSearchTermChange}
+      />
     </StyledMovieSection>
   );
 };

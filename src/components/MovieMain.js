@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
+import MovieResults from './MovieResults';
 
 const StyledMain = styled.main`
   display: flex;
@@ -8,10 +9,12 @@ const StyledMain = styled.main`
   flex-grow: 1;
 `;
 
-const MovieMain = () => {
+const MovieMain = (props) => {
+  console.log(props.movieResults);
   return (
     <StyledMain>
-      <SearchForm />
+      <SearchForm onSearchTermChange={props.onSearchTermChange} />
+      <MovieResults movieResult={props.movieResults} />
     </StyledMain>
   );
 };

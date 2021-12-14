@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { createGlobalStyle } from 'styled-components';
-
+import axios from 'axios';
 import MovieSection from './components/MovieSection';
 
 const GlobalStyle = createGlobalStyle`
@@ -32,13 +32,47 @@ body {
 }
 `;
 
-const Movie = () => {
-  return (
-    <Fragment>
-      <MovieSection />
-      <GlobalStyle />
-    </Fragment>
-  );
-};
+// const Movie = () => {
+const API_KEY = 'c1018a330183f93ffcc6df16fbfe581f';
+
+class Movie extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+    };
+    this.searchMovies = this.searchMovies.bind(this);
+  }
+  searchMovies(term) {
+    console.log('Search:', term);
+    // AXIOS
+
+    const searchQuery = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${term}&page=1&include_adult=false`;
+
+    axios
+      .get(searchQuery)
+      .then((response) => {
+        this.setState({
+          movies: response.data.results,
+        });
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+       });
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <MovieSection
+          movieResults={this.state.movies}
+          onSearchTermChange={this.searchMovies}
+        />
+        <GlobalStyle />
+      </Fragment>
+    );
+  }
+}
 
 export default Movie;
